@@ -1,0 +1,93 @@
+*{
+font-family: Calibri;
+background-color: #e9d8d4;
+}
+
+body {
+
+}
+
+main {
+
+}
+
+p {
+    text-align: center;
+    font-size: 40px;
+    padding: 30px 25px;
+}
+
+.form-box {
+    text-align: center;
+    padding: 40px 15px;
+    font-size: 30px;
+}
+
+.form-input {
+    background-color: white;
+    font-size: 30px;
+}
+
+.btn {
+background-color: #fff2d3;
+font-size: 30px;
+}
+
+.hero {
+    background-color: #ac625e;
+    background-size: cover;
+    padding: 20px 35px;
+    justify-content: space-around;
+}
+
+.app-title{
+    text-align: center;
+    font-size: 60px;
+    color: #d07658;
+    background-color: #fff2d3;
+    padding: 25px 15px;
+    display: inline-block;
+    margin-left: 500px;
+    box-shadow: 10px 10px #690720;
+
+
+}
+
+.text-align {
+    text-align: center;
+}
+
+.border-properties {
+    content: normal;
+    display: block; 
+    margin: 0 auto; 
+    width: 50%;
+    padding: 50px 0; 
+    background: #ac625e;
+}
+
+footer {
+    background: #ac625e;
+}
+
+address {
+    font-size: 20px;
+    justify-content: space-around;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 10px;
+    background: #ac625e;
+}
+
+a {
+    background-color: #fff2d3;
+    box-shadow: 10px 10px #690720;
+    font-size: 20px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 5px;
+}
+
+/* other colors: light pink - #e9d8d4, yellow- 
+#fff2d3, title color- #d07658
