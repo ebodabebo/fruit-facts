@@ -54,15 +54,13 @@ var getFruit = function (inputFood) {
 
 var getNutrition = function (inputFood) {
   // format the Fruityvice api url
-  var apiUrl = "https://trackapi.nutritionix.com/natural/nutrients";
+  var apiUrl = "https://trackapi.nutritionix.com/v2/natural/nutrients";
   console.log("Fruit: ", inputFood)
+  const credentials = { "Content-Type": "application/json", "x-app-id": "0a99b456", "x-app-key": "0efd891da46cd8f10b36b9165cc39553", "x-remote-user-id": 0 }
+  const postFood = JSON.stringify({ "query": inputFood})
+  const request = new Request(apiUrl, {method:"POST", headers:credentials, body: postFood})
   // make a get request to url
-  fetch(apiUrl, {
-    method: "POST",
-    body: { food_name: inputFood},
-    headers: { "x-app-id": "f84371c0", "x-app-key": "5681a0f0793909d41e71f141f7911a66", "x-remote-user-id": 0 }
-
-  })
+  fetch(request)
     .then(function (response) {
       // request was successful
       console.log("HELLO ? ", response)
