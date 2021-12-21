@@ -41,13 +41,13 @@ font-size: 30px;
 }
 
 .app-title{
+    margin: auto;
+    max-width: 500px;
     text-align: center;
     font-size: 60px;
     color: #d07658;
     background-color: #fff2d3;
     padding: 25px 15px;
-    display: inline-block;
-    margin-left: 500px;
     box-shadow: 10px 10px #690720;
 
 
