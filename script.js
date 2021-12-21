@@ -1,24 +1,30 @@
-const fruitName = "apple"; //testing input, DOESN'T CHANGE it's CONSTANT, we may want to change this back to let/var if we want to attach this to the user input
+var fruitName = ""; 
 
+var fruitInputEl = document.querySelector("#fruit-name");
+var fruitFormEl = document.querySelector("#fruit-form");
 
-// //create input 
-// var formSubmitHandler = function(event) {
-//     // prevent page from refreshing
-//     event.preventDefault();
+//create input 
+var formSubmitHandler = function(event) {
+    // prevent page from refreshing
+    event.preventDefault();
+
+    console.log("fruit name from input : " + fruitName);
   
-//     // get value from input element
-//     var fruitName = nameInputEl.value.trim();
+    // get value from input element
+    var fruitName = fruitInputEl.value.trim();
+    console.log("fruit name from input : " + fruitName);
   
-//     if (username) {
-//       getUserRepos(username);
+    if (fruitName) {
+      getFruit(fruitName);
+      getNutrition(fruitName)
   
-//       // clear old content
-//       repoContainerEl.textContent = '';
-//       nameInputEl.value = '';
-//     } else {
-//       alert('Please enter a GitHub username');
-//     }
-//   };
+      // clear old content
+      
+      fruitInputEl.value = '';
+    } else {
+      alert('Please enter a fruit name');
+    }
+  };
 
 
 
@@ -111,11 +117,4 @@ displayFruitPic = function(url){
   console.log("this is the url that needs to be displayed : " + url);
 }
 
-//
-
-getFruit(fruitName);
-
-getNutrition(fruitName)
-
-
-  // for giphy data/images/original/url/
+fruitFormEl.addEventListener("submit", formSubmitHandler);
