@@ -47,7 +47,7 @@ var getFruit = function (inputFood) {
 
           giphyData = information.data[0].images.original.url;  //giphyData is the variable that holds the image URL from they API call
 
-          //displayFruit (giphyData);   // use this to call the function that displays the data.
+          displayFruitPic (giphyData);   // use this to call the function that displays the data.
 
         });
       } else {
@@ -78,10 +78,18 @@ var getNutrition = function (inputFood) {
         console.log("Nutritionix: ");
         console.log(response);
         response.json().then(function (information) {
-          console.log("Nutrionix / foods(object) / array / information)"+ information.foods[0]);
+          console.log('information: ')
+          console.log(information)
+          //console.log("Nutrionix / foods(object) / array / information)"+ information.foods[0].nf_calories); first successful call to API
+          let calories = information.foods[0].nf_calories;
+          let cholesterol = information.foods[0].nf_cholesterol;
+          let potassium = information.foods[0].nf_potassium;
+          let protein = information.foods[0].nf_protein;
+          let saturatedfat = information.foods[0].nf_saturated_fat;
+          let sodium = information.foods[0].nf_sodium;
+          let sugars = information.foods[0].nf_sugars;
 
-
-        // displayFruit (data);   // Here's the call to the fucntion that will show the nutrition facts on the page use this to call the function that displays the data.
+        displayFruitNutrition (calories,cholesterol,potassium,protein,saturatedfat,sodium,sugars);   // Here's the call to the fucntion that will show the nutrition facts on the page use this to call the function that displays the data.
 
         });
       } else {
@@ -93,7 +101,21 @@ var getNutrition = function (inputFood) {
     });
 };
 
+//Ebony, here are the functions to display the fruit nutrition facts and picture:
+
+displayFruitNutrition = function(calories,cholesterol,potassium,protein,satfat,sodium,sugars) {
+console.log("The nutrition facts are: " + " cal: " + calories + " chol: " + cholesterol + " pot: " +  potassium + " prot: " + protein + " satfat: " + satfat + " sodium: " + sodium + " sug: " +sugars)
+}
+
+displayFruitPic = function(url){
+  console.log("this is the url that needs to be displayed : " + url);
+}
+
+//
+
 getFruit(fruitName);
 
 getNutrition(fruitName)
+
+
   // for giphy data/images/original/url/
