@@ -3,6 +3,12 @@ var fruitName = "";
 var fruitInputEl = document.querySelector("#fruit-name");
 var fruitFormEl = document.querySelector("#fruit-form");
 
+var imgFruitEl = document.createElement("img");
+var listItmeEl = document.createElement("li");
+
+
+
+
 //create input 
 var formSubmitHandler = function(event) {
     // prevent page from refreshing
@@ -111,10 +117,23 @@ var getNutrition = function (inputFood) {
 
 displayFruitNutrition = function(calories,cholesterol,potassium,protein,satfat,sodium,sugars) {
 console.log("The nutrition facts are: " + " cal: " + calories + " chol: " + cholesterol + " pot: " +  potassium + " prot: " + protein + " satfat: " + satfat + " sodium: " + sodium + " sug: " +sugars)
+
+
 }
 
 displayFruitPic = function(url){
-  console.log("this is the url that needs to be displayed : " + url);
+
+  document.getElementById("img-wrapper").innerHTML = "";
+
+
+  var imgFruitEl = document.createElement("img");
+
+  
+  imgFruitEl.src = url;
+
+  var wrapperEl = document.querySelector("#img-wrapper");
+  wrapperEl.appendChild(imgFruitEl)
+
 }
 
 fruitFormEl.addEventListener("submit", formSubmitHandler);
