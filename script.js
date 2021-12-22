@@ -3,7 +3,14 @@ var fruitName = "";
 var fruitInputEl = document.querySelector("#fruit-name");
 var fruitFormEl = document.querySelector("#fruit-form");
 
+
+var imgFruitEl = document.createElement("img");
+var listItmeEl = document.createElement("li");
+
+
+
 var fruitResults = document.getElementById("fruit-results")
+
 
 //create input 
 var formSubmitHandler = function(event) {
@@ -114,6 +121,9 @@ var getNutrition = function (inputFood) {
 displayFruitNutrition = function(foodName,calories,cholesterol,potassium,protein,satfat,sodium,sugars) {
 console.log("The nutrition facts are: " + " cal: " + calories + " chol: " + cholesterol + " pot: " +  potassium + " prot: " + protein + " satfat: " + satfat + " sodium: " + sodium + " sug: " +sugars)
 
+
+
+
 document.getElementById("fruit-results").innerHTML = "";
 
 let header = document.createElement("h2")
@@ -147,10 +157,22 @@ fruitResults.appendChild(sodiumspan)
 let sugarsspan = document.createElement("span")
 sugarsspan.textContent = "Sugars: " + sugars
 fruitResults.appendChild(sugarsspan)
+
 }
 
 displayFruitPic = function(url){
-  console.log("this is the url that needs to be displayed : " + url);
+
+  document.getElementById("img-wrapper").innerHTML = "";
+
+
+  var imgFruitEl = document.createElement("img");
+
+  
+  imgFruitEl.src = url;
+
+  var wrapperEl = document.querySelector("#img-wrapper");
+  wrapperEl.appendChild(imgFruitEl)
+
 }
 
 fruitFormEl.addEventListener("submit", formSubmitHandler);
