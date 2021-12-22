@@ -66,6 +66,13 @@ font-size: 30px;
     background: #ac625e;
 }
 
+#fruit-results {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 footer {
     background: #ac625e;
 }
