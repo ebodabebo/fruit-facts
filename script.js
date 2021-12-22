@@ -3,10 +3,13 @@ var fruitName = "";
 var fruitInputEl = document.querySelector("#fruit-name");
 var fruitFormEl = document.querySelector("#fruit-form");
 
+
 var imgFruitEl = document.createElement("img");
 var listItmeEl = document.createElement("li");
 
 
+
+var fruitResults = document.getElementById("fruit-results")
 
 
 //create input 
@@ -101,7 +104,7 @@ var getNutrition = function (inputFood) {
           let sodium = information.foods[0].nf_sodium;
           let sugars = information.foods[0].nf_sugars;
 
-        displayFruitNutrition (calories,cholesterol,potassium,protein,saturatedfat,sodium,sugars);   // Here's the call to the fucntion that will show the nutrition facts on the page use this to call the function that displays the data.
+        displayFruitNutrition (inputFood,calories,cholesterol,potassium,protein,saturatedfat,sodium,sugars);   // Here's the call to the fucntion that will show the nutrition facts on the page use this to call the function that displays the data.
 
         });
       } else {
@@ -115,9 +118,45 @@ var getNutrition = function (inputFood) {
 
 //Ebony, here are the functions to display the fruit nutrition facts and picture:
 
-displayFruitNutrition = function(calories,cholesterol,potassium,protein,satfat,sodium,sugars) {
+displayFruitNutrition = function(foodName,calories,cholesterol,potassium,protein,satfat,sodium,sugars) {
 console.log("The nutrition facts are: " + " cal: " + calories + " chol: " + cholesterol + " pot: " +  potassium + " prot: " + protein + " satfat: " + satfat + " sodium: " + sodium + " sug: " +sugars)
 
+
+
+
+document.getElementById("fruit-results").innerHTML = "";
+
+let header = document.createElement("h2")
+header.textContent = foodName
+fruitResults.appendChild(header) 
+
+let span = document.createElement("span")
+span.textContent = "Calories: " + calories
+fruitResults.appendChild(span)
+
+let cholesterolspan = document.createElement("span")
+cholesterolspan.textContent = "Cholesterol: " + cholesterol
+fruitResults.appendChild(cholesterolspan)
+
+let potassiumspan = document.createElement("span")
+potassiumspan.textContent = "Potassium: " + potassium
+fruitResults.appendChild(potassiumspan)
+
+let protienspan = document.createElement("span")
+protienspan.textContent = "Protein: " + protein
+fruitResults.appendChild(protienspan)
+
+let saturatedfatspan = document.createElement("span")
+saturatedfatspan.textContent = "Saturated Fat: " + satfat
+fruitResults.appendChild(saturatedfatspan)
+
+let sodiumspan = document.createElement("span")
+sodiumspan.textContent = "Sodium: " + sodium
+fruitResults.appendChild(sodiumspan)
+
+let sugarsspan = document.createElement("span")
+sugarsspan.textContent = "Sugars: " + sugars
+fruitResults.appendChild(sugarsspan)
 
 }
 
