@@ -1,29 +1,48 @@
-const fruitName = "apple"; //testing input, DOESN'T CHANGE it's CONSTANT, we may want to change this back to let/var if we want to attach this to the user input
+var fruitName = ""; 
 
-/* create input 
+var fruitInputEl = document.querySelector("#fruit-name");
+var fruitFormEl = document.querySelector("#fruit-form");
+
+
+var imgFruitEl = document.createElement("img");
+var listItmeEl = document.createElement("li");
+
+
+
+var fruitResults = document.getElementById("fruit-results")
+
+
+//create input 
 var formSubmitHandler = function(event) {
     // prevent page from refreshing
     event.preventDefault();
+
+    console.log("fruit name from input : " + fruitName);
   
     // get value from input element
-    var username = nameInputEl.value.trim();
+    var fruitName = fruitInputEl.value.trim();
+    console.log("fruit name from input : " + fruitName);
   
-    if (username) {
-      getUserRepos(username);
+    if (fruitName) {
+      getFruit(fruitName);
+      getNutrition(fruitName)
   
       // clear old content
-      repoContainerEl.textContent = '';
-      nameInputEl.value = '';
+      
+      fruitInputEl.value = '';
     } else {
-      alert('Please enter a GitHub username');
+      alert('Please enter a fruit name');
     }
   };
-*/
+
 
 
 // https://api.giphy.com/v1/gifs/search?q=orange&api_key=HvaacROi9w5oQCDYHSIk42eiDSIXH3FN&limit=1
 
-https://media2.giphy.com/media/3o7TKPdUkkbCAVqWk0/giphy_s.gif?cid=235416f56gn986s06ekq0eurvvdajhu5cv8tuad2es098bd9&rid=giphy_s.gif&ct=g
+//https://media2.giphy.com/media/3o7TKPdUkkbCAVqWk0/giphy_s.gif?cid=235416f56gn986s06ekq0eurvvdajhu5cv8tuad2es098bd9&rid=giphy_s.gif&ct=g
+
+
+// GIPHY API CALL 
 
 
 var getFruit = function (inputFood) {
@@ -37,9 +56,14 @@ var getFruit = function (inputFood) {
       if (response.ok) {
         //console.log("the response: " + response);
         response.json().then(function (information) {
-          //console.log(information);
-          //console.log ("finding the url : " + information.data[0].images.original.url)
-          // displayFruit (data);   // use this to call the function that displays the data.
+          console.log("Giphy: ");
+          console.log(information);
+          console.log ("finding the url : " + information.data[0].images.original.url)
+
+          giphyData = information.data[0].images.original.url;  //giphyData is the variable that holds the image URL from they API call
+
+          displayFruitPic (giphyData);   // use this to call the function that displays the data.
+
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -52,6 +76,8 @@ var getFruit = function (inputFood) {
 
 // 5681a0f0793909d41e71f141f7911a66  nutritionix API Key
 
+// NUTRITIONIX API CALL 
+
 var getNutrition = function (inputFood) {
   // format the Fruityvice api url
   var apiUrl = "https://trackapi.nutritionix.com/v2/natural/nutrients";
@@ -63,12 +89,23 @@ var getNutrition = function (inputFood) {
   fetch(request)
     .then(function (response) {
       // request was successful
-      console.log("HELLO ? ", response)
       if (response.ok) {
+        console.log("Nutritionix: ");
         console.log(response);
         response.json().then(function (information) {
-          console.log(information);
-          // displayFruit (data);   // use this to call the function that displays the data.
+          console.log('information: ')
+          console.log(information)
+          //console.log("Nutrionix / foods(object) / array / information)"+ information.foods[0].nf_calories); first successful call to API
+          let calories = information.foods[0].nf_calories;
+          let cholesterol = information.foods[0].nf_cholesterol;
+          let potassium = information.foods[0].nf_potassium;
+          let protein = information.foods[0].nf_protein;
+          let saturatedfat = information.foods[0].nf_saturated_fat;
+          let sodium = information.foods[0].nf_sodium;
+          let sugars = information.foods[0].nf_sugars;
+
+        displayFruitNutrition (inputFood,calories,cholesterol,potassium,protein,saturatedfat,sodium,sugars);   // Here's the call to the fucntion that will show the nutrition facts on the page use this to call the function that displays the data.
+
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -79,7 +116,63 @@ var getNutrition = function (inputFood) {
     });
 };
 
-getFruit(fruitName);
+//Ebony, here are the functions to display the fruit nutrition facts and picture:
 
-getNutrition(fruitName)
-  // for giphy data/images/original/url/
+displayFruitNutrition = function(foodName,calories,cholesterol,potassium,protein,satfat,sodium,sugars) {
+console.log("The nutrition facts are: " + " cal: " + calories + " chol: " + cholesterol + " pot: " +  potassium + " prot: " + protein + " satfat: " + satfat + " sodium: " + sodium + " sug: " +sugars)
+
+
+
+
+document.getElementById("fruit-results").innerHTML = "";
+
+let header = document.createElement("h2")
+header.textContent = foodName
+fruitResults.appendChild(header) 
+
+let span = document.createElement("span")
+span.textContent = "Calories: " + calories
+fruitResults.appendChild(span)
+
+let cholesterolspan = document.createElement("span")
+cholesterolspan.textContent = "Cholesterol: " + cholesterol
+fruitResults.appendChild(cholesterolspan)
+
+let potassiumspan = document.createElement("span")
+potassiumspan.textContent = "Potassium: " + potassium
+fruitResults.appendChild(potassiumspan)
+
+let protienspan = document.createElement("span")
+protienspan.textContent = "Protein: " + protein
+fruitResults.appendChild(protienspan)
+
+let saturatedfatspan = document.createElement("span")
+saturatedfatspan.textContent = "Saturated Fat: " + satfat
+fruitResults.appendChild(saturatedfatspan)
+
+let sodiumspan = document.createElement("span")
+sodiumspan.textContent = "Sodium: " + sodium
+fruitResults.appendChild(sodiumspan)
+
+let sugarsspan = document.createElement("span")
+sugarsspan.textContent = "Sugars: " + sugars
+fruitResults.appendChild(sugarsspan)
+
+}
+
+displayFruitPic = function(url){
+
+  document.getElementById("img-wrapper").innerHTML = "";
+
+
+  var imgFruitEl = document.createElement("img");
+
+  
+  imgFruitEl.src = url;
+
+  var wrapperEl = document.querySelector("#img-wrapper");
+  wrapperEl.appendChild(imgFruitEl)
+
+}
+
+fruitFormEl.addEventListener("submit", formSubmitHandler);
