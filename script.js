@@ -114,6 +114,8 @@ var getNutrition = function (inputFood) {
 displayFruitNutrition = function(foodName,calories,cholesterol,potassium,protein,satfat,sodium,sugars) {
 console.log("The nutrition facts are: " + " cal: " + calories + " chol: " + cholesterol + " pot: " +  potassium + " prot: " + protein + " satfat: " + satfat + " sodium: " + sodium + " sug: " +sugars)
 
+document.getElementById("fruit-results").innerHTML = "";
+
 let header = document.createElement("h2")
 header.textContent = foodName
 fruitResults.appendChild(header) 
